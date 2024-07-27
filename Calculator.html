@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            font-size: large;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(159, 202, 198);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .page{
+            border-style: solid;
+            border-width: 1px;
+            border-color: white white black black;
+
+            width: 40vh;
+            height: 50vh;
+            background-color: rgb(131, 130, 130);
+            box-shadow: -10px 10px 20px black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .search input , .search button{
+            padding: 5px;
+            height: 40px;
+            margin-top: 40px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px black;
+            background: linear-gradient(rgb(156, 156, 156),white,white,rgb(156, 156, 156));
+        }
+        .search{
+            padding: 10px;
+            margin-top: -40px;
+        }
+        .btn{
+            background-color: rgb(194, 193, 193);
+            box-shadow: 0px 0px 10px black;
+            cursor: pointer;
+            margin: 5px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: white white black black;
+            height: 50px;
+            width: 50px;
+        }
+        .cont{
+            margin-top: 10px;
+            margin-left: -10px;
+            /* background-color: rgb(255, 255, 255); */
+            padding: 15px;
+        }
+        .next{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .next .content{
+            width: 200px;
+            height: 200px;
+            border-style:solid;
+            border-color:black black blue blue ;
+            background-color: red;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        .content:hover{
+            transform: translate(-200px);
+            background-color: blue;
+            border-radius: 50%;
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1 style="font-size: xx-large; padding: 10px;">Calculator</h1>
+        <div class="search">
+            <input type="text" id="input"> <button onclick="cancel()" >Clear</button>
+        </div>
+        <div class="cont">
+           
+            <div class="row1">
+                <button  class="btn" onclick="func('7')">7</button>
+                <button  class="btn" onclick="func('8')">8</button>
+                <button  class="btn" onclick="func('9')">9</button>
+                <button  style="background-color: rgb(34, 34, 34); color: white;" class="btn" onclick="func('/')">/</button>
+            </div>
+            <div class="row1">
+                <button  class="btn" onclick="func('4')">4</button>
+                <button  class="btn" onclick="func('5')">5</button>
+                <button  class="btn" onclick="func('6')">6</button>
+                <button  style="background-color: rgb(34, 34, 34); color: white;" class="btn" onclick="func('*')">*</button>
+            </div>
+            <div class="row1">
+                <button  class="btn" onclick="func('1')">1</button>
+                <button  class="btn" onclick="func('2')">2</button>
+                <button  class="btn" onclick="func('3')">3</button>
+                <button  style="background-color: rgb(34, 34, 34); color: white;" class="btn" onclick="func('-')">-</button>
+            </div>
+            <div class="row1">
+                <button  style="background-color: rgb(255, 55, 55);" class="btn" onclick="del()">AC</button>
+                <button  class="btn" onclick="func('0')">0</button>
+                <button  style="background-color: rgb(34, 34, 34); color: white;" class="btn" onclick="check()">=</button>
+                <button  style="background-color: rgb(34, 34, 34); color: white;"class="btn" onclick="func('+')">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="next">
+        <div class="content"></div>
+    </div> -->
+    
+    <script>
+        var input = document.getElementById("input");
+
+        
+        function func(val){
+            input.value += val;
+        }
+        function check(){
+            try{
+                console.log(input.value);
+                input.value = eval(input.value);
+            }
+            catch(error){
+                alert('Invalid Command..!!');
+                input.value = ''
+            }
+        }
+        var list = [49,50,51,52,53,54,55,56,57,48,8];
+        document.onkeydown=(e)=>{
+            // console.log(e.keyCode);
+            // if (e.keyCode in list){
+            //         console.log(e.keyCode);
+            //         input.value += (e.keys);
+            //         console.log(input.value);
+            //     }
+            switch(e.keyCode){
+                case 13 :
+                    check()
+                    break;
+                
+                // case 50:
+                //     input.value +='2';
+                //     console.log(input.value);
+                //     break;
+            }
+        }
+       
+        function del(){
+            input.value = ''
+        }
+        function cancel(){
+            input.value = (input.value).slice(0,-1);
+        }
+    </script>
+</body>
+</html>
